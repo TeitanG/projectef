@@ -9,9 +9,9 @@ public class Categoria
 
     [Required]
     [MaxLength(150)]
-    public string Nombre{get;set;}
-    public string Descripcion{get;set;}
-    public virtual ICollection<Tarea> Tareas{get;set;}
+    public required string Nombre{get;set;}
+    public required string Descripcion{get;set;}
+    public required virtual ICollection<Tarea> Tareas{get;set;}
 }
 /*
 Para indicarle la base de datos que es un primary key se usa [key]

@@ -11,7 +11,7 @@ public class Tarea
     [MaxLength(30)]
     [ForeignKey("CategoriaId")]
     public Guid CategoriaId{get;set;}
-
+    
     [Required]
     [MaxLength(150)]
     public string Titulo {get;set;}
