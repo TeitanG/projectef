@@ -12,8 +12,8 @@ using proyectoef;
 namespace projectef.Migrations
 {
     [DbContext(typeof(TareasContext))]
-    [Migration("20250114021712_ColumnFechaVencimientoCategoria")]
-    partial class ColumnFechaVencimientoCategoria
+    [Migration("20250114031520_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,6 @@ namespace projectef.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
@@ -58,7 +57,6 @@ namespace projectef.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FechaCreacion")

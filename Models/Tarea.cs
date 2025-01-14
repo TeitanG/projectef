@@ -25,4 +25,4 @@ public class Tarea
     [NotMapped]
     public string Resumen{get;set;}
 
-} public enum Prioridad{Baja, Media, Alta}
+} public enum Prioridad{Baja = 0, Media = 1, Alta = 2}

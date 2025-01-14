@@ -19,6 +19,7 @@ Para indicarle a la base de datos que no se mapee se usa [NotMapped]
 Para indicarle a la base de datos que es un campo de solo lectura se usa [ReadOnly]
 Para indicarle a la base de datos que es un campo de solo escritura se usa [WriteOnly]
 Para indicarle a la base de datos que es un campo de solo lectura y escritura se usa [ReadWrite]
+Para indicarle a la base de datos que es un campo que queremos que ignore de momento usamos [JsonIgnore]
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -54,7 +55,7 @@ Esto se considera una buena practica.
 .HasConstrainName("NombreDeLaClaveForanea") se usa para indicarle a la base de datos que es una clave foranea.
 .OnDelete(DeleteBehavior.SetNull) se usa para indicarle a la base de datos que es una clave foranea.
 .Ignore(e=>e.NombreDeLaClase) se usa para indicarle a la base de datos que no se mapee.
-.IsRequired() se usa para indicarle a la base de datos que el campo es requerido.
+.IsRequired() se usa para indicarle a la base de datos que el campo es requerido. Se puede hacer false simplemente indicando false entre los parentesis.
 .HasMaxLength(tamaño) se usa para indicarle a la base de datos que el campo tiene un tamaño maximo.
 
 
@@ -72,6 +73,17 @@ dotnet ef database update.
 Las migraciones deben de hacerse antes de que la base de datos tenga informacion.
 Se guardara automaticamente la fecha en la que se hizo la migracion.
 Los nombres de las migraciones deben de ser lo mas especificos posibles para entender cuales fueron los cambios
+
+En C# se puede usar el metodo Guid.NewGUid() sin embargo los ID van a estar cambiando cada vez que EntityFramework haga la compracion entre el modelo actual y los cambios
+que se han realizado, por lo cual no es el metodo mas recomendado para hacer una migracion. Por que lo toma como si fuera un nuevo cambio, por lo que se debe usar un ID 
+que no cambie en el tiempo.
+
+Siempre que hagamos un cambio dentro del modelo o de la configuracion de la base de datos se debe crear una migracion para llevar trazabilidad de los cambios que se han
+Ido realizando.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 

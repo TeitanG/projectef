@@ -12,8 +12,8 @@ using proyectoef;
 namespace projectef.Migrations
 {
     [DbContext(typeof(TareasContext))]
-    [Migration("20250114015237_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250114032656_AddData")]
+    partial class AddData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,6 @@ namespace projectef.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
@@ -40,9 +39,28 @@ namespace projectef.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<int>("peso")
+                        .HasColumnType("int");
+
                     b.HasKey("CategoriaId");
 
                     b.ToTable("Categoria", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            CategoriaId = new Guid("0e1c33da-c46f-4fa0-8c2f-18a2ad76e20f"),
+                            Descripcion = "Descripcion pendiente",
+                            Nombre = "Actividades Pendientes",
+                            peso = 20
+                        },
+                        new
+                        {
+                            CategoriaId = new Guid("b2c36661-97d0-4fa7-8982-ee49db042e93"),
+                            Descripcion = "Descripcion pendiente",
+                            Nombre = "Actividades Personales",
+                            peso = 50
+                        });
                 });
 
             modelBuilder.Entity("proyectoef.models.Tarea", b =>
@@ -55,10 +73,12 @@ namespace projectef.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaVencimiento")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("PrioridadTarea")
