@@ -34,7 +34,10 @@ public class TareasContext:DbContext
             tarea.Property(e => e.Descripcion);
             tarea.Property(e => e.PrioridadTarea).IsRequired();
             tarea.Property(e => e.FechaCreacion); 
-            tarea.Ignore(e => e.Resumen);      
+            tarea.Property(e => e.FechaVencimiento);
+
+            tarea.Ignore(e => e.Resumen);    
+
         });
         
     }

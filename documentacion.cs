@@ -71,6 +71,7 @@ dotnet ef database update.
 
 Las migraciones deben de hacerse antes de que la base de datos tenga informacion.
 Se guardara automaticamente la fecha en la que se hizo la migracion.
+Los nombres de las migraciones deben de ser lo mas especificos posibles para entender cuales fueron los cambios
 
 
 
