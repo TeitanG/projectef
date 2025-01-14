@@ -43,9 +43,37 @@ builder.Entity<client>(entity=>
 });
 ejemplo ir a Tareascontext.cs y mirar la a partir de la linea 12
 
+Las dos formas son validas para hacer una conexion a una base de datos, pero la forma de FluentAPI es mas avanzada y se puede hacer mas cosas, ademas solo se debe de usar una de las dos
+Esto se considera una buena practica.
+
+.ToTable("NombreDeLaTabla") se usa para indicarle a la base de datos que el nombre de la tabla es diferente al nombre de la clase.
+.HasKey(e=>e.NombreDeLaClave) se usa para indicarle a la base de datos que el campo es una clave primaria.
+.HasOne(e=>e.NombreDeLaClase) se usa para indicarle a la base de datos que es una clave foranea.
+.WithOne(e=>e.NombreDeLaClase) se usa para indicarle a la base de datos que es una clave foranea.
+.HasForeignKey<NombreDeLaClase>(e=>e.NombreDeLaClave) se usa para indicarle a la base de datos que es una clave foranea.
+.HasConstrainName("NombreDeLaClaveForanea") se usa para indicarle a la base de datos que es una clave foranea.
+.OnDelete(DeleteBehavior.SetNull) se usa para indicarle a la base de datos que es una clave foranea.
+.Ignore(e=>e.NombreDeLaClase) se usa para indicarle a la base de datos que no se mapee.
+.IsRequired() se usa para indicarle a la base de datos que el campo es requerido.
+.HasMaxLength(tamaño) se usa para indicarle a la base de datos que el campo tiene un tamaño maximo.
+
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Las reglas de normalizacion de las bases de datos dicen que las tablas deben de estar en singular y las columnas en plural.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*** MIGRACIONES ***
+COMANDOS BASICOS
+dotnet ef migrations add **NombreDeLaMigracion**
+dotnet ef migrations add MyMigration
+dotnet ef database update
+
+
+
+
+
+
 
 
 
