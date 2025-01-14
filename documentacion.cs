@@ -67,7 +67,11 @@ Las reglas de normalizacion de las bases de datos dicen que las tablas deben de 
 COMANDOS BASICOS
 dotnet ef migrations add **NombreDeLaMigracion**
 dotnet ef migrations add MyMigration
-dotnet ef database update
+dotnet ef database update.
+
+Las migraciones deben de hacerse antes de que la base de datos tenga informacion.
+Se guardara automaticamente la fecha en la que se hizo la migracion.
+
 
 
 
