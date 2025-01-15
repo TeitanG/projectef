@@ -132,4 +132,9 @@ app.MapPut("/api/Tareas/{id}", async([FromServices] TareasContext dbContext, [Fr
 En PostMan, usaremos el https que generamos y sera en PUT, luego en body al igual que cuando agregamos un dato y colocaremos los datos que queremos actualizar.
 
 
+
+
+
+
+
 */

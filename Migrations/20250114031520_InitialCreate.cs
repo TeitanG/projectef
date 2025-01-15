@@ -24,6 +24,7 @@ namespace projectef.Migrations
                 {
                     table.PrimaryKey("PK_Categoria", x => x.CategoriaId);
                 });
+                 
 
             migrationBuilder.CreateTable(
                 name: "Tarea",
@@ -61,7 +62,7 @@ namespace projectef.Migrations
                 name: "Tarea");
 
             migrationBuilder.DropTable(
-                name: "Categoria");
+                name: "Categoria");                
         }
     }
 }
