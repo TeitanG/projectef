@@ -84,14 +84,52 @@ Ido realizando.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Para ingresar datos con Entity Framework usamos postman, con el atributo post en vez de get y le damos en body, raw y seleccionamos JSON, a continuacion ingresamos los datos
+como se muestra en el ejemplo.
+
+// Esto va en nuestro codigo
+tabla.columnaconprimarykey = Guid.NewGuid();
+tarea.segundacolumnaImportante = tipodedato
+await dbcontext.addAsync(tabla);
 
 
+//Esto va en PostMan
+{
+    "categoriaId" : "0e1c33da-c46f-4fa0-8c2f-18a2ad76e20f",
+    "titulo" : "Terminar de ver pelicula en netflix",
+    "descripcion" : null,
+    "prioridadTarea": 2  
+    }
 
 
+Para actualizar un registro usando EntityFrameWork
+esto va en nuestro codigo, Api/tareas/{id} es la url que vamos a usar en PostMan para encontrar el registro, TareasContext es donde esta la informacion de la tabla, 
+Se mencionan la tabla a actualizar y se le da la ruta y como se va a buscar que es por ID.
+
+Adicionalmente, se da una variable (var) donde almacenaremos la busqueda, haremos una comprobacion con el metodo If para asegurarnos de que el valor si exista
+Y luego en las variables a actualizar pondremos los nuevos campos.
+
+Por ultimo hacemos un return donde nos dara un error ne caso de no encontrar el valor que buscamos.
+
+app.MapPut("/api/Tareas/{id}", async([FromServices] TareasContext dbContext, [FromBody] Tarea tarea, [FromRoute] Guid id) =>
+{
+    var tareaActual = dbContext.Tareas.Find(id);
+
+    if (tareaActual != null)
+    {
+        tareaActual.CategoriaId = tarea.CategoriaId;
+        tareaActual.Titulo = tarea.Titulo;
+        tareaActual.PrioridadTarea = tarea.PrioridadTarea;
+        tareaActual.Descripcion = tarea.Descripcion;
+
+        await dbContext.SaveChangesAsync();
+        return Results.Ok();
+
+    }
+    return Results.NotFound();
 
 
-
-
+En PostMan, usaremos el https que generamos y sera en PUT, luego en body al igual que cuando agregamos un dato y colocaremos los datos que queremos actualizar.
 
 
 */
